@@ -1,0 +1,17 @@
+{% extends 'tacoapp/base.html' %}
+
+{% block content %}
+
+<div>
+  <form method="POST">
+    {% csrf_token %}
+    Taco
+    <input type="text" name="taco">
+  </form>
+
+  {% if all_items %}
+    {{ all_items }}
+  {% endif %}
+</div>
+
+{% endblock %}
