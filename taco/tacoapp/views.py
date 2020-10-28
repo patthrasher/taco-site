@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .models import Food
 from .forms import FoodForm
 
 def index(request) :
@@ -8,7 +9,7 @@ def index(request) :
 
         if form.is_valid() :
             form.save()
-            all_items = Food.objects.all
+            # all_items = Food.objects.all
             return render(request, 'tacoapp/index.html', {'all_items' : 'something to display'})
 
     else :

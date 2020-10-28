@@ -3,11 +3,14 @@
 {% block content %}
 
 <div>
-  <form method="POST">
+  <form class="form-inline" method="POST">
     {% csrf_token %}
     Taco
-    <input type="text" name="taco">
+    <input type="text" name="item">
+    <button type="submit">Add To List</button>
   </form>
+
+
 
   {% if all_items %}
     {{ all_items }}
