@@ -5,6 +5,10 @@
 <div>
   <form method="POST">
     {% csrf_token %}
+    <input type="date" name="date"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+
     <select name="item">
       <option value="potato">potato</option>
       <option value="bean">bean</option>
@@ -23,7 +27,9 @@
 
 
   {% if all_items %}
-    {{ all_items }}
+    {% for each in all_items %}
+      {{ each }}
+    {% endfor %}
   {% endif %}
 </div>
 

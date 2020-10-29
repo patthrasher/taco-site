@@ -7,4 +7,4 @@ class Food(models.Model) :
     number = models.IntegerField(default=99)
 
     def __str__(self) :
-        return self.date + ' | ' + self.item + ' | ' + self.number
+        return str(self.date) + ' | ' + self.item + ' | ' + str(self.number)

@@ -9,8 +9,9 @@ def index(request) :
 
         if form.is_valid() :
             form.save()
-            # all_items = Food.objects.all
-            return render(request, 'tacoapp/index.html', {'all_items' : 'something to display'})
+            all_items = Food.objects.all
+            return render(request, 'tacoapp/index.html', {'all_items' : all_items})
 
     else :
-        return render(request, 'tacoapp/index.html', {'all_items' : 'nothing to display'})
+        all_items = Food.objects.all
+        return render(request, 'tacoapp/index.html', {'all_items' : all_items})
