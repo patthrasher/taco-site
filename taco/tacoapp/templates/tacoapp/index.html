@@ -3,10 +3,20 @@
 {% block content %}
 
 <div>
-  <form class="form-inline" method="POST">
+  <form method="POST">
     {% csrf_token %}
-    Taco
-    <input type="text" name="item">
+    <select name="item">
+      <option value="potato">potato</option>
+      <option value="bean">bean</option>
+    </select>
+    <select name="number">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
     <button type="submit">Add To List</button>
   </form>
 
