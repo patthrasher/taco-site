@@ -1,0 +1,13 @@
+{% extends 'tacoapp/base.html' %}
+
+{% block content %}
+
+<h1>Hello Manager Person</h1>
+
+{% if all_items %}
+    {% for each in all_items %}
+        {{ each }}
+    {% endfor %}
+{% endif%}
+
+{% endblock %}
