@@ -5,9 +5,23 @@
 <h1>Hello Manager Person</h1>
 
 {% if all_items %}
+
     {% for each in all_items %}
         {{ each }}
     {% endfor %}
 {% endif%}
+
+<p>There were {{ total }} tacos leftover since inception</p>
+
+<p>{{ day }}</p>
+
+<p>{{ list }}</p>
+
+<p>{{ x }}</p>
+
+<p>{{ c }}</p>
+
+<p>{{ dc }}</p>
+
 
 {% endblock %}
