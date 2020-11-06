@@ -38,14 +38,20 @@ def manager(request) :
         return redirect('tacoapp:index')
 
     else :
+
+        def som(dayy, food, obj) :
+            if day == dayy :
+                counts[food] = counts[food] + obj.potato
+            return counts
+
         all_items = Food.objects.all()
 
         for each in all_items :
             total = total + each.number
 
         weekdays = ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday')
-
-        counts = {'potato' : 0, 'bean' : 0}
+        foods = ['potato', 'bean']
+        counts = {'potato' : [0, 0], 'bean' : [0, 0]}
 
         wedcount = 0
         thucount = 0
@@ -60,22 +66,21 @@ def manager(request) :
             num = each.potato
 
             if day == 'Wednesday' :
-                wedcount = wedcount + each.potato
+                wedcount = wedcount + num
 
-
-            # counts.update({each : })            
 
         dc = {}
         for each in weekdays :
             # count = lst.count(each)
-            dc.update({each : {'potato' : [wedcount, lst.count(each)],
-                }})
+            dc.update({each : counts})
+
+            # {'potato' : [wedcount, lst.count(each)]
 
         # dctot = {}
         # for each in weekdays :
         #     count = lst.count()
 
-        av = dc['Wednesday']['potato'][0] / dc['Wednesday']['potato'][1]
+        # av = dc['Wednesday']['potato'][0] / dc['Wednesday']['potato'][1]
 
         context = {
             'all_items' : all_items,
@@ -83,7 +88,7 @@ def manager(request) :
             'list' : lst,
             'dc' : dc,
             'wedcount' : wedcount,
-            'av' : av,
+            # 'av' : av,
         }
 
         return render(request, 'tacoapp/manager.html', context)
