@@ -7,6 +7,8 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 
+import pandas as pd
+
 @login_required
 def index(request) :
 
@@ -43,6 +45,11 @@ def manager(request) :
 
         weekdays = ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday')
 
+        counts = {'potato' : 0, 'bean' : 0}
+
+        wedcount = 0
+        thucount = 0
+
         lst = []
         for each in all_items :
             day = weekdays[each.date.weekday()]
@@ -50,16 +57,33 @@ def manager(request) :
             # daystring = weekDays[day]
             lst.append(day)
 
+            num = each.potato
+
+            if day == 'Wednesday' :
+                wedcount = wedcount + each.potato
+
+
+            # counts.update({each : })            
+
         dc = {}
         for each in weekdays :
             # count = lst.count(each)
-            dc.update({each : lst.count(each)})
+            dc.update({each : {'potato' : [wedcount, lst.count(each)],
+                }})
+
+        # dctot = {}
+        # for each in weekdays :
+        #     count = lst.count()
+
+        av = dc['Wednesday']['potato'][0] / dc['Wednesday']['potato'][1]
 
         context = {
             'all_items' : all_items,
             'total' : total,
             'list' : lst,
             'dc' : dc,
+            'wedcount' : wedcount,
+            'av' : av,
         }
 
         return render(request, 'tacoapp/manager.html', context)

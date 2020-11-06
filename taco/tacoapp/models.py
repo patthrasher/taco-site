@@ -6,5 +6,7 @@ class Food(models.Model) :
     item = models.CharField(max_length=200)
     number = models.IntegerField(default=99)
 
+    potato = models.IntegerField(default=10)
+
     def __str__(self) :
-        return str(self.date) + ' | ' + self.item + ' | ' + str(self.number)
+        return str(self.date) + ' | ' + self.item + ' | ' + str(self.number)  + ' | ' + str(self.potato)
