@@ -10,19 +10,27 @@
        value="{{ today }}"
        min="2020-01-01" max="2030-12-31">
 
-    <select name="item">
-      <option value="potato">potato</option>
-      <option value="bean">bean</option>
-    </select>
-    <select name="number">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
+    <label for="potato">Potato:</label>
+      <select name="potato">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
 
-    <button type="submit">Add Item</button>
+      <label for="potato">Bean:</label>
+        <select name="bean">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+    <button type="submit">Add Items</button>
   </form>
 
   {% if messages %}

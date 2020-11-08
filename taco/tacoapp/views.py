@@ -39,56 +39,45 @@ def manager(request) :
 
     else :
 
-        def som(dayy, food, obj) :
-            if day == dayy :
-                counts[food] = counts[food] + obj.potato
-            return counts
-
         all_items = Food.objects.all()
-
-        for each in all_items :
-            total = total + each.number
-
         weekdays = ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday')
-        foods = ['potato', 'bean']
-        counts = {'potato' : [0, 0], 'bean' : [0, 0]}
+        foodcount = {'potato' : 0, 'bean' : 0}
 
-        wedcount = 0
-        thucount = 0
 
-        lst = []
+        dic = {all_items}
+        daylist = []
         for each in all_items :
             day = weekdays[each.date.weekday()]
-            # dayday = day.weekday()
-            # daystring = weekDays[day]
-            lst.append(day)
+            daylist.append(day)
 
-            num = each.potato
-
-            if day == 'Wednesday' :
-                wedcount = wedcount + num
-
-
-        dc = {}
+        daycount = {}
         for each in weekdays :
-            # count = lst.count(each)
-            dc.update({each : counts})
+            count = daylist.count(each)
+            daycount.update({each : count})
 
-            # {'potato' : [wedcount, lst.count(each)]
 
-        # dctot = {}
-        # for each in weekdays :
-        #     count = lst.count()
+        potlist = []
+        beanlist = []
+        for each in all_items :
+            potlist.append(each.potato)
+            beanlist.append(each.bean)
 
-        # av = dc['Wednesday']['potato'][0] / dc['Wednesday']['potato'][1]
+        pottot = sum(potlist)
+        beantot = sum(beanlist)
+
+        total = pottot + beantot
+
 
         context = {
             'all_items' : all_items,
+            'daylist' : daylist,
+            'daycount' : daycount,
+            'potlist' : potlist,
+            'pottot' : pottot,
+            'beanlist' : beanlist,
+            'beantot' : beantot,
             'total' : total,
-            'list' : lst,
-            'dc' : dc,
-            'wedcount' : wedcount,
-            # 'av' : av,
+            'dic' : dic,
         }
 
         return render(request, 'tacoapp/manager.html', context)
