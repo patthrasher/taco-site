@@ -67,6 +67,8 @@ def manager(request) :
 
         total = pottot + beantot
 
+        x = Food.objects.raw('Select * FROM tacoapp_food')
+
 
         context = {
             'all_items' : all_items,
@@ -78,6 +80,7 @@ def manager(request) :
             'beantot' : beantot,
             'total' : total,
             'dic' : dic,
+            'x' : x,
         }
 
         return render(request, 'tacoapp/manager.html', context)
