@@ -67,7 +67,7 @@ def manager(request) :
 
         total = pottot + beantot
 
-        x = Food.objects.raw('Select * FROM tacoapp_food')
+        x = Food.objects.raw('Select * FROM tacoapp_food WHERE id == 5')
 
 
         context = {
