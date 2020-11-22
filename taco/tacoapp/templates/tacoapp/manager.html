@@ -1,4 +1,5 @@
 {% extends 'tacoapp/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -7,7 +8,7 @@
 <!-- {% if all_items %}
 
     {% for each in all_items %}
-        {{ each.potato }}
+        {{ each }}
     {% endfor %}
 {% endif%} -->
 
@@ -27,12 +28,48 @@
 
 <p>total of beans... {{ beantot }}</p> -->
 
-<p>{{ x }}</p>
+<!-- <p>{{ x }}</p> -->
 
-<p>{% for each in x %}
+<!-- <p>{% for each in x %}
       {{ each }}
    {% endfor %}
-</p>
+</p> -->
 
+
+<table border="solid">
+  <tr><td>Date</td>
+    <td>Weekday</td>
+    <td>Potato</td>
+    <td>Bean</td></tr>
+  {% for each in all_items %}
+      <tr><td>{{ each.date }}</td>
+        <td>{{ each.weekday }}</td>
+        <td>{{ each.potato }}</td>
+        <td>{{ each.bean }}</td></tr>
+
+  {% endfor %}
+
+  <table border="solid">
+    <tr><td>Weekday</td>
+      <td>Potato</td>
+      <td>Bean</td></tr>
+    <tr><td>Sunday</td>
+    <td>{{ sun_dic.pot }}</td>
+    <td>{{ sun_dic.bean }}</td></tr>
+
+    <tr><td>Monday</td>
+      <td>{{ mon_dic.pot }}</td>
+      <td>{{ mon_dic.bean }}</td></tr>
+
+</table>
+
+<!-- <br>
+{{ plst }} {{ sun_pot_tot }} --- average --- {{ sun_pot_av }}
+<br>
+{{ blst }} {{ sun_bean_tot }} --- average --- {{ sun_bean_av }} -->
+<br>
+Sunday Averages: {{ sun_dic }}
+<br>
+Monday Averages: {{ mon_dic }}
 
 {% endblock %}

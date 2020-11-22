@@ -10,6 +10,16 @@
        value="{{ today }}"
        min="2020-01-01" max="2030-12-31">
 
+    <select name="weekday">
+      <option value="Sunday">Sunday</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+    </select>
+
     <label for="potato">Potato:</label>
       <select name="potato">
         <option value="0">0</option>
@@ -20,15 +30,15 @@
         <option value="5">5</option>
       </select>
 
-      <label for="potato">Bean:</label>
-        <select name="bean">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+    <label for="potato">Bean:</label>
+      <select name="bean">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
 
     <button type="submit">Add Items</button>
   </form>

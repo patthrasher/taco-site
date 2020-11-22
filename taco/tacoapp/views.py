@@ -13,7 +13,6 @@ import pandas as pd
 def index(request) :
 
     today = str(datetime.date.today())
-
     if request.method == 'POST' :
         form = FoodForm(request.POST or None)
 
@@ -40,9 +39,8 @@ def manager(request) :
     else :
 
         all_items = Food.objects.all()
-        weekdays = ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday')
+        weekdays = ('Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday')
         foodcount = {'potato' : 0, 'bean' : 0}
-
 
         dic = {all_items}
         daylist = []
@@ -67,7 +65,51 @@ def manager(request) :
 
         total = pottot + beantot
 
-        x = Food.objects.raw('Select * FROM tacoapp_food WHERE id == 5')
+
+        # plst = []
+        # blst = []
+        # for each in sun  :
+        #     plst.append(each.potato)
+        #     blst.append(each.bean)
+
+
+        # sun_pot_tot = sum(plst)
+        # sun_bean_tot = sum(blst)
+        #
+        # sun_pot_av = sun_pot_tot // len(plst)
+        # sun_bean_av = sun_bean_tot // len(blst)
+
+        sun = Food.objects.filter(weekday='Sunday')
+        mon = Food.objects.filter(weekday='Monday')
+        tue = Food.objects.filter(weekday='Tuesday')
+        wed = Food.objects.filter(weekday='Wednesday')
+        thu = Food.objects.filter(weekday='Thursday')
+        fri = Food.objects.filter(weekday='Friday')
+        sat = Food.objects.filter(weekday='Saturday')
+
+
+        sun_dic = {'pot' : [], 'bean' : []}
+
+        for each in sun :
+            sun_dic['pot'].append(each.potato)
+            sun_dic['bean'].append(each.bean)
+
+
+        l = len(sun_dic['pot'])
+        sun_dic['pot'] = sum(sun_dic['pot']) // l
+        sun_dic['bean'] = sum(sun_dic['bean']) // l
+
+
+
+        mon_dic = {'pot' : [], 'bean' : []}
+
+        for each in mon :
+            mon_dic['pot'].append(each.potato)
+            mon_dic['bean'].append(each.bean)
+
+        l = len(mon_dic['pot'])
+        mon_dic['pot'] = sum(mon_dic['pot']) // l
+        mon_dic['bean'] = sum(mon_dic['bean']) // l
 
 
         context = {
@@ -80,7 +122,17 @@ def manager(request) :
             'beantot' : beantot,
             'total' : total,
             'dic' : dic,
-            'x' : x,
+            # 'fil' : fil,
+            # 'plst' : plst,
+            # 'blst' : blst,
+            # 'sun_bean_tot' : sun_bean_tot,
+            # 'sun_pot_tot' : sun_pot_tot,
+            # 'sun_bean_av' : sun_bean_av,
+            # 'sun_pot_av' : sun_pot_av,
+            # 'test_lst' : test_lst,
+            'sun_dic' : sun_dic,
+            'mon_dic' : mon_dic,
+            'weekdays' : weekdays,
         }
 
         return render(request, 'tacoapp/manager.html', context)
