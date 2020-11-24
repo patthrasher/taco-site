@@ -90,9 +90,12 @@ def manager(request) :
 
         sun_dic = {'pot' : [], 'bean' : []}
 
-        for each in sun :
-            sun_dic['pot'].append(each.potato)
-            sun_dic['bean'].append(each.bean)
+        # for each in sun :
+        #     sun_dic['pot'].append(each.potato)
+        #     sun_dic['bean'].append(each.bean)
+
+        sun_dic['pot'] = [i.potato for i in sun]
+        sun_dic['bean'] = [i.bean for i in sun]
 
 
         l = len(sun_dic['pot'])
@@ -103,13 +106,31 @@ def manager(request) :
 
         mon_dic = {'pot' : [], 'bean' : []}
 
-        for each in mon :
-            mon_dic['pot'].append(each.potato)
-            mon_dic['bean'].append(each.bean)
+        # for each in mon :
+        #     mon_dic['pot'].append(each.potato)
+        #     mon_dic['bean'].append(each.bean)
+
+        mon_dic['pot'] = [i.potato for i in mon]
+        mon_dic['bean'] = [i.potato for i in mon]
 
         l = len(mon_dic['pot'])
         mon_dic['pot'] = sum(mon_dic['pot']) // l
         mon_dic['bean'] = sum(mon_dic['bean']) // l
+
+
+        # try all in one dic
+        # big_dic = {
+        #     'sun' : {'pot' : [], 'bean' : []},
+        #     'mon' : {'pot' : [], 'bean' : []},
+        #     'tue' : {'pot' : [], 'bean' : []},
+        # }
+        #
+        # def som(obj, taco, day) :
+        #     for each in obj :
+        #         big_dic[day][taco].append(each.potato)
+        #     return big_dic
+        #
+        # ok = som(tue, 'pot', 'tue')
 
 
         context = {
@@ -133,6 +154,8 @@ def manager(request) :
             'sun_dic' : sun_dic,
             'mon_dic' : mon_dic,
             'weekdays' : weekdays,
+            # 'ok' : ok,
+            'sun' : sun,
         }
 
         return render(request, 'tacoapp/manager.html', context)
