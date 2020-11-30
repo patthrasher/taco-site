@@ -3,6 +3,8 @@
 
 {% block content %}
 
+{{ mes }}
+
 <h1>Hello Manager Person</h1>
 
 <!-- {% if all_items %}
@@ -40,46 +42,66 @@
   <tr><td>Date</td>
     <td>Weekday</td>
     <td>Potato</td>
-    <td>Bean</td></tr>
+    <td>Bean</td>
+    <td>Migas</td>
+    <td>Vegan</td></tr>
   {% for each in all_items %}
       <tr><td>{{ each.date }}</td>
         <td>{{ each.weekday }}</td>
         <td>{{ each.potato }}</td>
-        <td>{{ each.bean }}</td></tr>
+        <td>{{ each.bean }}</td>
+        <td>{{ each.migas}}</td>
+        <td>{{ each.vegan }}</td></tr>
 
   {% endfor %}
 
   <table border="solid">
     <tr><td>Weekday</td>
       <td>Potato</td>
-      <td>Bean</td></tr>
+      <td>Bean</td>
+      <td>Migas</td>
+      <td>Vegan</td></tr>
     <tr><td>Sunday</td>
     <td>{{ sun_dic.pot }}</td>
-    <td>{{ sun_dic.bean }}</td></tr>
+    <td>{{ sun_dic.bean }}</td>
+    <td>{{ sun_dic.migas }}</td>
+    <td>{{ sun_dic.vegan }}</td></tr>
 
     <tr><td>Monday</td>
       <td>{{ mon_dic.pot }}</td>
-      <td>{{ mon_dic.bean }}</td></tr>
+      <td>{{ mon_dic.bean }}</td>
+      <td>{{ mon_dic.migas }}</td>
+      <td>{{ mon_dic.vegan }}</td></tr>
 
     <tr><td>Tuesday</td>
       <td>{{ tue_dic.pot }}</td>
-      <td>{{ tue_dic.bean }}</td></tr>
+      <td>{{ tue_dic.bean }}</td>
+      <td>{{ tue_dic.migas }}</td>
+      <td>{{ tue_dic.vegan }}</td></tr>
 
     <tr><td>Wednesday</td>
       <td>{{ wed_dic.pot }}</td>
-      <td>{{ wed_dic.bean }}</td></tr>
+      <td>{{ wed_dic.bean }}</td>
+      <td>{{ wed_dic.migas }}</td>
+      <td>{{ wed_dic.vegan }}</td></tr>
 
     <tr><td>Thursday</td>
       <td>{{ thu_dic.pot }}</td>
-      <td>{{ thu_dic.bean }}</td></tr>
+      <td>{{ thu_dic.bean }}</td>
+      <td>{{ thu_dic.migas }}</td>
+      <td>{{ thu_dic.vegan }}</td></tr>
 
     <tr><td>Friday</td>
       <td>{{ fri_dic.pot }}</td>
-      <td>{{ fri_dic.bean }}</td></tr>
+      <td>{{ fri_dic.bean }}</td>
+      <td>{{ fri_dic.migas }}</td>
+      <td>{{ fri_dic.vegan }}</td></tr>
 
     <tr><td>Saturday</td>
       <td>{{ sat_dic.pot }}</td>
-      <td>{{ sat_dic.bean }}</td></tr>
+      <td>{{ sat_dic.bean }}</td>
+      <td>{{ sat_dic.migas }}</td>
+      <td>{{ sat_dic.vegan }}</td></tr>
 
 </table>
 
@@ -92,6 +114,5 @@ Sunday Averages: {{ sun_dic }}
 <br>
 Monday Averages: {{ mon_dic }}
 <br>
-here goes something haha {{ sun }}
 
 {% endblock %}
