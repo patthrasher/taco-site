@@ -9,5 +9,6 @@ from django.contrib.auth import views as auth_views
 app_name = 'tacoapp'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('manager/', views.manager, name='manager')
+    path('manager/', views.manager, name='manager'),
+    path('manager/details/', views.details, name='details')
 ]

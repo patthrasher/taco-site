@@ -7,36 +7,8 @@
 
 <h1>Hello Manager Person</h1>
 
-<!-- {% if all_items %}
 
-    {% for each in all_items %}
-        {{ each }}
-    {% endfor %}
-{% endif%} -->
-
-<p>There were {{ total }} tacos leftover since inception</p>
-
-<!-- <p>daylist... {{ daylist }}</p>
-
-<p>{{ dc }}</p>
-
-<p>number of each day {{ daycount }}</p>
-
-<p>list of potatos... {{ potlist }}</p>
-
-<p>total of potatos... {{ pottot }}</p>
-
-<p>list of beans... {{ beanlist }}</p>
-
-<p>total of beans... {{ beantot }}</p> -->
-
-<!-- <p>{{ x }}</p> -->
-
-<!-- <p>{% for each in x %}
-      {{ each }}
-   {% endfor %}
-</p> -->
-
+<!-- <p>There were {{ total }} tacos leftover since inception</p> -->
 
 <table border="solid">
   <tr><td>Date</td>
@@ -45,7 +17,7 @@
     <td>Bean</td>
     <td>Migas</td>
     <td>Vegan</td></tr>
-  {% for each in all_items %}
+  {% for each in some_items %}
       <tr><td>{{ each.date }}</td>
         <td>{{ each.weekday }}</td>
         <td>{{ each.potato }}</td>
@@ -54,8 +26,25 @@
         <td>{{ each.vegan }}</td></tr>
 
   {% endfor %}
+</table>
 
-  <table border="solid">
+<form class="ml-4 mt-3" method="POST">
+  {% csrf_token %}
+  <input type="date" name="date"
+     value="{{ thirty }}"
+     min="2020-01-01" max="2030-12-31">
+   <input type="date" name="date"
+      value="{{ today }}"
+      min="2020-01-01" max="2030-12-31">
+
+    <input type="submit" name="submit" value="See Details">
+</form>
+
+<a href="{% url 'tacoapp:details' %}">Deeeeetaillllllls</a>
+
+<!-- {{ some_items }} -->
+
+  <!-- <table border="solid">
     <tr><td>Weekday</td>
       <td>Potato</td>
       <td>Bean</td>
@@ -101,18 +90,14 @@
       <td>{{ sat_dic.pot }}</td>
       <td>{{ sat_dic.bean }}</td>
       <td>{{ sat_dic.migas }}</td>
-      <td>{{ sat_dic.vegan }}</td></tr>
+      <td>{{ sat_dic.vegan }}</td></tr> -->
 
-</table>
+<!-- </table> -->
 
 <!-- <br>
-{{ plst }} {{ sun_pot_tot }} --- average --- {{ sun_pot_av }}
-<br>
-{{ blst }} {{ sun_bean_tot }} --- average --- {{ sun_bean_av }} -->
-<br>
 Sunday Averages: {{ sun_dic }}
 <br>
 Monday Averages: {{ mon_dic }}
-<br>
+<br> -->
 
 {% endblock %}

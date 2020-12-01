@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from .models import Food
-from .forms import FoodForm
+from .forms import food_form
 from django.contrib import messages
 import datetime
 
@@ -13,7 +13,7 @@ def index(request) :
 
     today = str(datetime.date.today())
     if request.method == 'POST' :
-        form = FoodForm(request.POST or None)
+        form = food_form(request.POST or None)
 
         if form.is_valid() :
             form.save()
@@ -36,8 +36,12 @@ def manager(request) :
         return redirect('tacoapp:index')
 
     else :
+        today = str(datetime.date.today())
+        thirty = str(datetime.date.today() - datetime.timedelta(30))
 
         all_items = Food.objects.all()
+        le = len(all_items) - 5
+        some_items = all_items[le:]
 
         all_tacos_lists = [[i.potato for i in all_items], [i.bean for i in all_items],
             [i.migas for i in all_items], [i.vegan for i in all_items]]
@@ -64,7 +68,7 @@ def manager(request) :
 
         l = len(sun_dic['pot'])
         if l == 0 :
-            mes = 'Yo can\'t divide by zero bud'
+            mes = ''
         else :
             sun_dic['pot'] = sum(sun_dic['pot']) // l
             sun_dic['bean'] = sum(sun_dic['bean']) // l
@@ -83,7 +87,7 @@ def manager(request) :
 
         l = len(mon_dic['pot'])
         if l == 0 :
-            mes = 'Yo cant divide by zero bud'
+            mes = ''
         else :
             mon_dic['pot'] = sum(mon_dic['pot']) // l
             mon_dic['bean'] = sum(mon_dic['bean']) // l
@@ -101,7 +105,7 @@ def manager(request) :
 
         l = len(tue_dic['pot'])
         if l == 0 :
-            mes = 'Yo can\'t divide by zero bud'
+            mes = ''
         else :
             tue_dic['pot'] = sum(tue_dic['pot']) // l
             tue_dic['bean'] = sum(tue_dic['bean']) // l
@@ -120,7 +124,7 @@ def manager(request) :
 
         l = len(wed_dic['pot'])
         if l == 0 :
-            mes = 'Yo can\'t divide by zero bud'
+            mes = ''
         else :
             wed_dic['pot'] = sum(wed_dic['pot']) // l
             wed_dic['bean'] = sum(wed_dic['bean']) // l
@@ -139,7 +143,7 @@ def manager(request) :
 
         l = len(thu_dic['pot'])
         if l == 0 :
-            mes = 'Yo can\'t divide by zero bud'
+            mes = ''
         else :
             thu_dic['pot'] = sum(thu_dic['pot']) // l
             thu_dic['bean'] = sum(thu_dic['bean']) // l
@@ -158,7 +162,7 @@ def manager(request) :
 
         l = len(fri_dic['pot'])
         if l == 0 :
-            mes = 'Yo can\'t divide by zero bud'
+            mes = ''
         else :
             fri_dic['pot'] = sum(fri_dic['pot']) // l
             fri_dic['bean'] = sum(fri_dic['bean']) // l
@@ -177,7 +181,7 @@ def manager(request) :
 
         l = len(sat_dic['pot'])
         if l == 0 :
-            mes = 'Yo can\'t divide by zero bud'
+            mes = ''
         else :
             sat_dic['pot'] = sum(sat_dic['pot']) // l
             sat_dic['bean'] = sum(sat_dic['bean']) // l
@@ -187,22 +191,7 @@ def manager(request) :
 
         context = {
             'all_items' : all_items,
-            # 'daylist' : daylist,
-            # 'daycount' : daycount,
-            # 'potlist' : potlist,
-            # 'pottot' : pottot,
-            # 'beanlist' : beanlist,
-            # 'beantot' : beantot,
             'total' : total,
-            # 'dic' : dic,
-            # 'fil' : fil,
-            # 'plst' : plst,
-            # 'blst' : blst,
-            # 'sun_bean_tot' : sun_bean_tot,
-            # 'sun_pot_tot' : sun_pot_tot,
-            # 'sun_bean_av' : sun_bean_av,
-            # 'sun_pot_av' : sun_pot_av,
-            # 'test_lst' : test_lst,
             'sun_dic' : sun_dic,
             'mon_dic' : mon_dic,
             'tue_dic' : tue_dic,
@@ -210,10 +199,18 @@ def manager(request) :
             'thu_dic' : thu_dic,
             'fri_dic' : fri_dic,
             'sat_dic' : sat_dic,
-            # 'weekdays' : weekdays,
-            # 'ok' : ok,
-            # 'sun' : sun,
             'mes' : mes,
+            'today' : today,
+            'thirty' : thirty,
+            'some_items' : some_items,
         }
 
         return render(request, 'tacoapp/manager.html', context)
+
+
+def details(request) :
+    total_30 = str(50)
+    context = {
+        'total_30' : total_30
+    }
+    return render(request, 'tacoapp/details.html', context)
