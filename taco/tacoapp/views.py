@@ -39,23 +39,22 @@ def manager(request) :
         today = str(datetime.date.today())
         thirty = str(datetime.date.today() - datetime.timedelta(30))
 
-        all_items = Food.objects.all()
-        le = len(all_items) - 5
-        some_items = all_items[le:]
+        all_items = Food.objects.filter(date__gte=thirty).order_by('date')
 
+        # should make these calculations later so not so many lists created
         all_tacos_lists = [[i.potato for i in all_items], [i.bean for i in all_items],
             [i.migas for i in all_items], [i.vegan for i in all_items]]
 
         total = sum(map(sum, all_tacos_lists))
 
 
-        sun = Food.objects.filter(weekday='Sunday')
-        mon = Food.objects.filter(weekday='Monday')
-        tue = Food.objects.filter(weekday='Tuesday')
-        wed = Food.objects.filter(weekday='Wednesday')
-        thu = Food.objects.filter(weekday='Thursday')
-        fri = Food.objects.filter(weekday='Friday')
-        sat = Food.objects.filter(weekday='Saturday')
+        sun = Food.objects.filter(weekday='Sunday').filter(date__gte=thirty)
+        mon = Food.objects.filter(weekday='Monday').filter(date__gte=thirty)
+        tue = Food.objects.filter(weekday='Tuesday').filter(date__gte=thirty)
+        wed = Food.objects.filter(weekday='Wednesday').filter(date__gte=thirty)
+        thu = Food.objects.filter(weekday='Thursday').filter(date__gte=thirty)
+        fri = Food.objects.filter(weekday='Friday').filter(date__gte=thirty)
+        sat = Food.objects.filter(weekday='Saturday').filter(date__gte=thirty)
 
 
         # Sunday
@@ -202,7 +201,6 @@ def manager(request) :
             'mes' : mes,
             'today' : today,
             'thirty' : thirty,
-            'some_items' : some_items,
         }
 
         return render(request, 'tacoapp/manager.html', context)

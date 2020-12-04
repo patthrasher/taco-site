@@ -3,21 +3,18 @@
 
 {% block content %}
 
-{{ mes }}
-
 <h1>Hello Manager Person</h1>
 
+<p>There were {{ total }} tacos leftover in the last 30 days</p>
 
-<!-- <p>There were {{ total }} tacos leftover since inception</p> -->
-
-<table border="solid">
+<table border="solid" name="thirty-list">
   <tr><td>Date</td>
     <td>Weekday</td>
     <td>Potato</td>
     <td>Bean</td>
     <td>Migas</td>
     <td>Vegan</td></tr>
-  {% for each in some_items %}
+  {% for each in all_items %}
       <tr><td>{{ each.date }}</td>
         <td>{{ each.weekday }}</td>
         <td>{{ each.potato }}</td>
@@ -27,77 +24,57 @@
 
   {% endfor %}
 </table>
-
-<form class="ml-4 mt-3" method="POST">
-  {% csrf_token %}
-  <input type="date" name="date"
-     value="{{ thirty }}"
-     min="2020-01-01" max="2030-12-31">
-   <input type="date" name="date"
-      value="{{ today }}"
-      min="2020-01-01" max="2030-12-31">
-
-    <input type="submit" name="submit" value="See Details">
-</form>
-
-<a href="{% url 'tacoapp:details' %}">Deeeeetaillllllls</a>
-
-<!-- {{ some_items }} -->
-
-  <!-- <table border="solid">
-    <tr><td>Weekday</td>
-      <td>Potato</td>
-      <td>Bean</td>
-      <td>Migas</td>
-      <td>Vegan</td></tr>
-    <tr><td>Sunday</td>
-    <td>{{ sun_dic.pot }}</td>
-    <td>{{ sun_dic.bean }}</td>
-    <td>{{ sun_dic.migas }}</td>
-    <td>{{ sun_dic.vegan }}</td></tr>
-
-    <tr><td>Monday</td>
-      <td>{{ mon_dic.pot }}</td>
-      <td>{{ mon_dic.bean }}</td>
-      <td>{{ mon_dic.migas }}</td>
-      <td>{{ mon_dic.vegan }}</td></tr>
-
-    <tr><td>Tuesday</td>
-      <td>{{ tue_dic.pot }}</td>
-      <td>{{ tue_dic.bean }}</td>
-      <td>{{ tue_dic.migas }}</td>
-      <td>{{ tue_dic.vegan }}</td></tr>
-
-    <tr><td>Wednesday</td>
-      <td>{{ wed_dic.pot }}</td>
-      <td>{{ wed_dic.bean }}</td>
-      <td>{{ wed_dic.migas }}</td>
-      <td>{{ wed_dic.vegan }}</td></tr>
-
-    <tr><td>Thursday</td>
-      <td>{{ thu_dic.pot }}</td>
-      <td>{{ thu_dic.bean }}</td>
-      <td>{{ thu_dic.migas }}</td>
-      <td>{{ thu_dic.vegan }}</td></tr>
-
-    <tr><td>Friday</td>
-      <td>{{ fri_dic.pot }}</td>
-      <td>{{ fri_dic.bean }}</td>
-      <td>{{ fri_dic.migas }}</td>
-      <td>{{ fri_dic.vegan }}</td></tr>
-
-    <tr><td>Saturday</td>
-      <td>{{ sat_dic.pot }}</td>
-      <td>{{ sat_dic.bean }}</td>
-      <td>{{ sat_dic.migas }}</td>
-      <td>{{ sat_dic.vegan }}</td></tr> -->
-
-<!-- </table> -->
-
-<!-- <br>
-Sunday Averages: {{ sun_dic }}
 <br>
-Monday Averages: {{ mon_dic }}
-<br> -->
+
+<p>Average waste per weekday, last 30 days</p>
+<table border="solid">
+  <tr><td>Weekday</td>
+    <td>Potato</td>
+    <td>Bean</td>
+    <td>Migas</td>
+    <td>Vegan</td></tr>
+  <tr><td>Sunday</td>
+  <td>{{ sun_dic.pot }}</td>
+  <td>{{ sun_dic.bean }}</td>
+  <td>{{ sun_dic.migas }}</td>
+  <td>{{ sun_dic.vegan }}</td></tr>
+
+  <tr><td>Monday</td>
+    <td>{{ mon_dic.pot }}</td>
+    <td>{{ mon_dic.bean }}</td>
+    <td>{{ mon_dic.migas }}</td>
+    <td>{{ mon_dic.vegan }}</td></tr>
+
+  <tr><td>Tuesday</td>
+    <td>{{ tue_dic.pot }}</td>
+    <td>{{ tue_dic.bean }}</td>
+    <td>{{ tue_dic.migas }}</td>
+    <td>{{ tue_dic.vegan }}</td></tr>
+
+  <tr><td>Wednesday</td>
+    <td>{{ wed_dic.pot }}</td>
+    <td>{{ wed_dic.bean }}</td>
+    <td>{{ wed_dic.migas }}</td>
+    <td>{{ wed_dic.vegan }}</td></tr>
+
+  <tr><td>Thursday</td>
+    <td>{{ thu_dic.pot }}</td>
+    <td>{{ thu_dic.bean }}</td>
+    <td>{{ thu_dic.migas }}</td>
+    <td>{{ thu_dic.vegan }}</td></tr>
+
+  <tr><td>Friday</td>
+    <td>{{ fri_dic.pot }}</td>
+    <td>{{ fri_dic.bean }}</td>
+    <td>{{ fri_dic.migas }}</td>
+    <td>{{ fri_dic.vegan }}</td></tr>
+
+  <tr><td>Saturday</td>
+    <td>{{ sat_dic.pot }}</td>
+    <td>{{ sat_dic.bean }}</td>
+    <td>{{ sat_dic.migas }}</td>
+    <td>{{ sat_dic.vegan }}</td></tr>
+
+</table>
 
 {% endblock %}
