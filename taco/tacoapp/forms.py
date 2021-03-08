@@ -6,5 +6,6 @@ class food_form(forms.ModelForm) :
         model = Food
         fields = ['date', 'potato', 'bean', 'weekday', 'migas', 'vegan']
 
-# class details_form(forms.ModelForm) :
+# class sheets_test(forms.ModelForm) :
 #     class Meta :
+#         model =

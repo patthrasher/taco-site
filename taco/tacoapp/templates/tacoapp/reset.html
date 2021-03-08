@@ -1,0 +1,15 @@
+{% extends 'tacoapp/base.html' %}
+
+{% block content %}
+
+<h1>Temp Header for Clear</h1>
+
+<form class="ml-4 mt-3" method="POST" onSubmit="return confirm('Are you sure you wish to delete?');">
+  {% csrf_token %}
+  <button type="submit">Reset Sheet?</button>
+
+</form>
+
+<p><a href="{% url 'tacoapp:index' %}">Home</a></p>
+
+{% endblock %}
