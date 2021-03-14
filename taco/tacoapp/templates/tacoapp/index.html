@@ -3,19 +3,68 @@
 {% block content %}
 <h1>Details view baby</h1>
 
+{% if user.is_authenticated %}
+    <p>Hi {{ user.username }}!</p>
+{% endif %}
+
 <form class="ml-4 mt-3" method="POST">
   {% csrf_token %}
 <button type="submit">From Sheets?</button>
 </form>
 
 <br>
+
+<p>Total Waste for {{ month_year }}: {{ total_waste }}</p>
+
+<table border="solid">
+  <tr><td>Weekday</td>
+    <td>Potato</td>
+    <td>Migas</td>
+    <td>Bean</td>
+    <td>Vegan</td></tr>
+
+  <tr><td>Sunday</td>
+{% for k,v in sun.items %}
+    <td>{{ v }}</td>
+{% endfor %}</tr>
+
+  <tr><td>Monday</td>
+{% for k,v in mon.items %}
+    <td>{{ v }}</td>
+{% endfor %}</tr>
+
+  <tr><td>Tuesday</td>
+{% for k,v in tue.items %}
+    <td>{{ v }}</td>
+{% endfor %}</tr>
+
+<tr><td>Wednesday</td>
+{% for k,v in wed.items %}
+  <td>{{ v }}</td>
+{% endfor %}</tr>
+
+<tr><td>Thursday</td>
+{% for k,v in thu.items %}
+  <td>{{ v }}</td>
+{% endfor %}</tr>
+
+<tr><td>Friday</td>
+{% for k,v in fri.items %}
+  <td>{{ v }}</td>
+{% endfor %}</tr>
+
+<tr><td>Saturday</td>
+{% for k,v in sat.items %}
+  <td>{{ v }}</td>
+{% endfor %}</tr>
+
+</table>
+
+
 <p><a href="{% url 'tacoapp:reset' %}">Reset Sheet?</a></p>
 
-{{ context }}
-{{ total_waste }}
 
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
   <p>You are not logged in</p>

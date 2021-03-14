@@ -48,6 +48,7 @@ def index(request) :
                 print(k + ':', v, '| ', end='')
             print('\n')
 
+
         # connect to google sheet
         scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
         creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
@@ -196,11 +197,16 @@ def index(request) :
 
 
 
-
-
         context = {
-        'context' : 'contexxxt',
         'total_waste' : total_waste,
+        'month_year' : month_year,
+        'sun' : sun,
+        'mon' : mon,
+        'tue' : tue,
+        'wed' : wed,
+        'thu' : thu,
+        'fri' : fri,
+        'sat' : sat,
         }
         return render(request, 'tacoapp/index.html', context)
 
