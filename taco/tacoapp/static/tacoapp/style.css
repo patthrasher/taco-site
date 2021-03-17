@@ -1,3 +1,21 @@
-.green {
-  color: green;
+.red {
+  color: red;
+}
+
+.mobile-center {
+  margin: auto;
+  width: 85%;
+  /* padding: 10px 0 0 15%; */
+}
+
+.center {
+  text-align: center;
+}
+
+.table-pad {
+  padding-left: 38%;
+}
+
+.top-space {
+  padding-top: 25px;
 }
